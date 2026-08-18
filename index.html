@@ -3,11 +3,379 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UniBuddy</title>
+
+    <title>UniBuddy | Your College, Your Community, Your Buddy</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div id="root"></div>
-    <h1>Welcome to UniBuddy</h1>
-    <script src="../src/index.js"></script>
+
+<!-- NAVBAR -->
+<header class="navbar">
+
+    <div class="logo">
+        🎓 <span>UniBuddy</span>
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#community">Community</a>
+        <a href="#about">About</a>
+    </nav>
+
+    <button class="join-btn" onclick="openLogin()">
+        Join UniBuddy
+    </button>
+
+</header>
+
+
+<!-- HERO -->
+<section id="home" class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            🎓 Built for College Students
+        </div>
+
+        <h1>
+            Your College.<br>
+            <span>Your Community.</span><br>
+            Your Buddy.
+        </h1>
+
+        <p>
+            UniBuddy helps college students connect, learn,
+            share resources, solve doubts and build projects
+            together — all in one place.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="primary-btn" onclick="openLogin()">
+                Get Started 🚀
+            </button>
+
+            <a href="#features" class="secondary-btn">
+                Explore Features
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- DASHBOARD CARD -->
+
+    <div class="dashboard">
+
+        <div class="dashboard-header">
+            <span>UniBuddy Dashboard</span>
+            <span>● Online</span>
+        </div>
+
+        <div class="welcome">
+            <h3>Welcome back, Student 👋</h3>
+            <p>What do you want to do today?</p>
+        </div>
+
+        <div class="dashboard-grid">
+
+            <div class="dash-card">
+                📚
+                <strong>Notes</strong>
+                <small>120+ Resources</small>
+            </div>
+
+            <div class="dash-card">
+                ❓
+                <strong>Doubts</strong>
+                <small>Ask Community</small>
+            </div>
+
+            <div class="dash-card">
+                🤝
+                <strong>Projects</strong>
+                <small>Find Partners</small>
+            </div>
+
+            <div class="dash-card">
+                💬
+                <strong>Community</strong>
+                <small>Connect Students</small>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section id="features" class="section">
+
+    <div class="section-title">
+
+        <span class="badge">Everything in one place</span>
+
+        <h2>Made for Student Life</h2>
+
+        <p>
+            UniBuddy brings useful college features together
+            on one simple platform.
+        </p>
+
+    </div>
+
+
+    <div class="features-grid">
+
+        <div class="feature-card">
+            <div class="feature-icon">📚</div>
+
+            <h3>Notes & Resources</h3>
+
+            <p>
+                Find and share notes, study materials
+                and useful resources with classmates.
+            </p>
+        </div>
+
+
+        <div class="feature-card">
+            <div class="feature-icon">❓</div>
+
+            <h3>Doubt Zone</h3>
+
+            <p>
+                Ask questions and get help from
+                classmates and seniors.
+            </p>
+        </div>
+
+
+        <div class="feature-card">
+            <div class="feature-icon">🤝</div>
+
+            <h3>Project Partners</h3>
+
+            <p>
+                Find students with matching skills
+                for your next project.
+            </p>
+        </div>
+
+
+        <div class="feature-card">
+            <div class="feature-icon">📢</div>
+
+            <h3>College Updates</h3>
+
+            <p>
+                Stay updated with important announcements,
+                events and activities.
+            </p>
+        </div>
+
+
+        <div class="feature-card">
+            <div class="feature-icon">💬</div>
+
+            <h3>Student Community</h3>
+
+            <p>
+                Connect with students and share
+                ideas, experiences and opportunities.
+            </p>
+        </div>
+
+
+        <div class="feature-card">
+            <div class="feature-icon">🤖</div>
+
+            <h3>AI Buddy</h3>
+
+            <p>
+                Get instant help with study,
+                college and project-related questions.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COMMUNITY -->
+
+<section id="community" class="community">
+
+    <div class="community-content">
+
+        <span class="badge">Your Community</span>
+
+        <h2>
+            Never solve a college problem alone.
+        </h2>
+
+        <p>
+            Ask questions, share knowledge, find teammates
+            and help other students.
+        </p>
+
+        <button class="primary-btn" onclick="openLogin()">
+            Join the Community
+        </button>
+
+    </div>
+
+
+    <div class="community-card">
+
+        <div class="post">
+            <div class="avatar">A</div>
+
+            <div>
+                <strong>Aditya</strong>
+
+                <p>
+                    Anyone interested in joining our
+                    hackathon team?
+                </p>
+
+                <small>❤️ 24 Likes · 💬 8 Replies</small>
+            </div>
+        </div>
+
+
+        <div class="post">
+            <div class="avatar second">R</div>
+
+            <div>
+                <strong>Rahul</strong>
+
+                <p>
+                    Does anyone have DBMS notes for Unit 3?
+                </p>
+
+                <small>❤️ 18 Likes · 💬 5 Replies</small>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about" class="section about">
+
+    <div class="section-title">
+
+        <span class="badge">About UniBuddy</span>
+
+        <h2>Built for BIET Students</h2>
+
+        <p>
+            UniBuddy is designed for students of
+            Bansal Institute of Engineering and Technology
+            to make college life easier, more connected
+            and more organized.
+        </p>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div>
+            <strong>🎓</strong>
+            <h3>Your College</h3>
+            <p>BIET Student Platform</p>
+        </div>
+
+        <div>
+            <strong>🤝</strong>
+            <h3>Your Community</h3>
+            <p>Students Helping Students</p>
+        </div>
+
+        <div>
+            <strong>💙</strong>
+            <h3>Your Buddy</h3>
+            <p>Always With You</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-logo">
+        🎓 UniBuddy
+    </div>
+
+    <p>
+        Your College, Your Community, Your Buddy.
+    </p>
+
+    <p>
+        © 2026 UniBuddy · Bansal Institute of Engineering and Technology
+    </p>
+
+</footer>
+
+
+<!-- LOGIN MODAL -->
+
+<div id="loginModal" class="modal">
+
+    <div class="modal-box">
+
+        <button class="close" onclick="closeLogin()">×</button>
+
+        <div class="login-icon">🎓</div>
+
+        <h2>Welcome to UniBuddy</h2>
+
+        <p>
+            Join your college community.
+        </p>
+
+        <input
+            type="text"
+            id="studentName"
+            placeholder="Enter your name"
+        >
+
+        <input
+            type="email"
+            id="studentEmail"
+            placeholder="Enter your email"
+        >
+
+        <button class="primary-btn login-button" onclick="login()">
+            Continue 🚀
+        </button>
+
+        <p id="loginMessage"></p>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
 </body>
 </html>
