@@ -1,0 +1,10 @@
+{
+    "name": "unibuddy-project",
+    "version": "1.0.0",
+    "description": "UniBuddy Project Boilerplate",
+    "main": "src/index.js",
+    "scripts": {
+        "start": "node src/index.js"
+    },
+    "dependencies": {}
+}
