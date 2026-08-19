@@ -11,15 +11,18 @@ app.use(express.json());
 
 
 // ================= DATABASE =================
-
 mongoose
-    .connect(process.env.MONGO_URI)
+    .connect(process.env.MONGO_URI, {
+        serverSelectionTimeoutMS: 10000
+    })
     .then(() => {
         console.log("MongoDB Connected Successfully ✅");
     })
     .catch((error) => {
-        console.error("MongoDB Connection Error ❌");
+        console.error("========== MONGODB ERROR ==========");
+        console.error(error.name);
         console.error(error.message);
+        console.error("==================================");
     });
 
 
