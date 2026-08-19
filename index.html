@@ -338,6 +338,8 @@
 
 <!-- LOGIN MODAL -->
 
+<!-- LOGIN / SIGNUP MODAL -->
+
 <div id="loginModal" class="modal">
 
     <div class="modal-box">
@@ -346,29 +348,75 @@
 
         <div class="login-icon">🎓</div>
 
-        <h2>Welcome to UniBuddy</h2>
+        <h2 id="authTitle">Join UniBuddy</h2>
 
-        <p>
-            Join your college community.
+        <p id="authSubtitle">
+            Create your student account
         </p>
+
+
+        <!-- NAME -->
 
         <input
             type="text"
             id="studentName"
-            placeholder="Enter your name"
+            placeholder="Full Name"
         >
+
+
+        <!-- EMAIL -->
 
         <input
             type="email"
             id="studentEmail"
-            placeholder="Enter your email"
+            placeholder="College Email"
         >
 
-        <button class="primary-btn login-button" onclick="login()">
-            Continue 🚀
+
+        <!-- PASSWORD -->
+
+        <input
+            type="password"
+            id="studentPassword"
+            placeholder="Password (minimum 6 characters)"
+        >
+
+
+        <!-- COLLEGE -->
+
+        <input
+            type="text"
+            id="studentCollege"
+            placeholder="College Name"
+            value="Bansal Institute of Engineering and Technology"
+        >
+
+
+        <!-- BUTTON -->
+
+        <button
+            class="primary-btn login-button"
+            onclick="handleSignup()"
+        >
+            Create Account 🚀
         </button>
 
+
         <p id="loginMessage"></p>
+
+
+        <p class="auth-switch">
+
+            Already have an account?
+
+            <button
+                onclick="showLogin()"
+                class="text-button"
+            >
+                Login
+            </button>
+
+        </p>
 
     </div>
 
