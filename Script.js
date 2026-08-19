@@ -1,5 +1,4 @@
-const API_URL = "https://unibuddy-hm8g.onrender.com";
-
+const API_URL = "https://unibuddy-1-q0wv.onrender.com";const API_URL = "https://unibuddy-1-q0wv.onrender.com";
 
 // ================= BACKEND TEST =================
 
