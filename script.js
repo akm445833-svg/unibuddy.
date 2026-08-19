@@ -1,3 +1,14 @@
+const API_URL = "https://unibuddy-hm8g.onrender.com";
+
+// Test backend
+fetch(`${API_URL}/api/health`)
+    .then(response => response.json())
+    .then(data => {
+        console.log("Backend:", data);
+    })
+    .catch(error => {
+        console.error("Backend connection failed:", error);
+    });
 function openLogin() {
     document.getElementById("loginModal").style.display = "flex";
 }
