@@ -100,7 +100,26 @@ app.get("/api/health", (req, res) => {
     message: "UniBuddy API is healthy 🚀"
   });
 });
+app.get("/api/test-db", async (req, res) => {
+    try {
+        const state = mongoose.connection.readyState;
 
+        res.json({
+            success: true,
+            mongoState: state,
+            message:
+                state === 1
+                    ? "MongoDB Connected ✅"
+                    : "MongoDB NOT Connected ❌"
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+});
 
 // ================= SIGNUP =================
 
