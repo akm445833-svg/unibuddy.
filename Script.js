@@ -136,7 +136,7 @@ async function signup(
 
        const result = await Promise.race([
     signup(name, email, password, college),
-
+await fetch(`${API_URL}/api/health`);
     new Promise(resolve =>
         setTimeout(() => {
             resolve({
