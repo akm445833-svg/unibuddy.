@@ -1,3 +1,33 @@
+fetch(`${API_URL}/api/auth/login`, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        email: email,
+        password: password
+    })
+})
+.then(response => response.json())
+.then(data => {
+    console.log(data);
+});
+fetch(`${API_URL}/api/auth/signup`, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        name: name,
+        email: email,
+        password: password,
+        college: college
+    })
+})
+.then(response => response.json())
+.then(data => {
+    console.log(data);
+});
 const API_URL = "https://unibuddy-hm8g.onrender.com";
 
 // Test backend
