@@ -307,3 +307,214 @@ window.onclick = function(event) {
     }
 
 };
+// ================= REAL SIGNUP =================
+
+async function handleSignup() {
+
+    const name =
+        document.getElementById("studentName").value.trim();
+
+    const email =
+        document.getElementById("studentEmail").value.trim();
+
+    const password =
+        document.getElementById("studentPassword").value;
+
+    const college =
+        document.getElementById("studentCollege").value.trim();
+
+    const message =
+        document.getElementById("loginMessage");
+
+
+    if (!name || !email || !password) {
+
+        message.innerText =
+            "Please fill all required fields.";
+
+        message.style.color = "red";
+
+        return;
+    }
+
+
+    if (password.length < 6) {
+
+        message.innerText =
+            "Password must contain at least 6 characters.";
+
+        message.style.color = "red";
+
+        return;
+    }
+
+
+    message.innerText =
+        "Creating your account...";
+
+    message.style.color = "#5b4ff5";
+
+
+    const result = await signup(
+        name,
+        email,
+        password,
+        college
+    );
+
+
+    if (result.success) {
+
+        localStorage.setItem(
+            "unibuddyToken",
+            result.token
+        );
+
+        localStorage.setItem(
+            "unibuddyUser",
+            JSON.stringify(result.user)
+        );
+
+
+        message.innerText =
+            "Account created successfully! 🎉";
+
+        message.style.color = "green";
+
+
+        setTimeout(() => {
+
+            closeLogin();
+
+        }, 1500);
+
+
+    } else {
+
+        message.innerText =
+            result.message || "Signup failed.";
+
+        message.style.color = "red";
+
+    }
+
+}
+
+
+// ================= SHOW LOGIN =================
+
+function showLogin() {
+
+    document.getElementById("authTitle").innerText =
+        "Welcome Back 👋";
+
+    document.getElementById("authSubtitle").innerText =
+        "Login to your UniBuddy account";
+
+
+    document.querySelector(".login-button").innerText =
+        "Login 🚀";
+
+
+    document.querySelector(".login-button").onclick =
+        handleRealLogin;
+
+}
+
+
+// ================= REAL LOGIN =================
+
+async function handleRealLogin() {
+
+    const email =
+        document.getElementById("studentEmail").value.trim();
+
+    const password =
+        document.getElementById("studentPassword").value;
+
+    const message =
+        document.getElementById("loginMessage");
+
+
+    if (!email || !password) {
+
+        message.innerText =
+            "Enter email and password.";
+
+        message.style.color = "red";
+
+        return;
+    }
+
+
+    try {
+
+        const response = await fetch(
+            `${API_URL}/api/auth/login`,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            }
+        );
+
+
+        const data =
+            await response.json();
+
+
+        if (data.success) {
+
+            localStorage.setItem(
+                "unibuddyToken",
+                data.token
+            );
+
+            localStorage.setItem(
+                "unibuddyUser",
+                JSON.stringify(data.user)
+            );
+
+
+            message.innerText =
+                `Welcome back, ${data.user.name}! 🎉`;
+
+            message.style.color = "green";
+
+
+            setTimeout(() => {
+
+                closeLogin();
+
+            }, 1500);
+
+
+        } else {
+
+            message.innerText =
+                data.message || "Login failed.";
+
+            message.style.color = "red";
+
+        }
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        message.innerText =
+            "Unable to connect to UniBuddy server.";
+
+        message.style.color = "red";
+
+    }
+
+}
