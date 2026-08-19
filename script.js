@@ -1,44 +1,20 @@
-fetch(`${API_URL}/api/auth/login`, {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        email: email,
-        password: password
-    })
-})
-.then(response => response.json())
-.then(data => {
-    console.log(data);
-});
-fetch(`${API_URL}/api/auth/signup`, {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        name: name,
-        email: email,
-        password: password,
-        college: college
-    })
-})
-.then(response => response.json())
-.then(data => {
-    console.log(data);
-});
 const API_URL = "https://unibuddy-hm8g.onrender.com";
 
-// Test backend
+
+// ================= BACKEND TEST =================
+
 fetch(`${API_URL}/api/health`)
     .then(response => response.json())
     .then(data => {
-        console.log("Backend:", data);
+        console.log("UniBuddy Backend:", data);
     })
     .catch(error => {
         console.error("Backend connection failed:", error);
     });
+
+
+// ================= LOGIN MODAL =================
+
 function openLogin() {
     document.getElementById("loginModal").style.display = "flex";
 }
@@ -48,13 +24,15 @@ function closeLogin() {
 }
 
 
-function login() {
+// ================= LOGIN =================
+
+async function login() {
 
     const name =
-        document.getElementById("studentName").value;
+        document.getElementById("studentName").value.trim();
 
     const email =
-        document.getElementById("studentEmail").value;
+        document.getElementById("studentEmail").value.trim();
 
     const message =
         document.getElementById("loginMessage");
@@ -71,24 +49,256 @@ function login() {
     }
 
 
-    message.innerText =
-        "Welcome to UniBuddy, " + name + "! 🎉";
-
-    message.style.color = "#5b4ff5";
+    // Demo password until password field is added
+    const password = "UniBuddy123";
 
 
-    setTimeout(() => {
+    try {
 
-        closeLogin();
+        const response = await fetch(
+            `${API_URL}/api/auth/login`,
+            {
+                method: "POST",
 
-    }, 1800);
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            }
+        );
+
+
+        const data = await response.json();
+
+
+        if (data.success) {
+
+            localStorage.setItem(
+                "unibuddyToken",
+                data.token
+            );
+
+            localStorage.setItem(
+                "unibuddyUser",
+                JSON.stringify(data.user)
+            );
+
+
+            message.innerText =
+                `Welcome back, ${data.user.name}! 🎉`;
+
+            message.style.color = "#5b4ff5";
+
+
+        } else {
+
+            message.innerText =
+                data.message || "Login failed.";
+
+            message.style.color = "red";
+
+        }
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        message.innerText =
+            "Backend se connection nahi ho raha.";
+
+        message.style.color = "red";
+
+    }
+
 }
 
+
+// ================= SIGNUP =================
+
+async function signup(
+    name,
+    email,
+    password,
+    college
+) {
+
+    try {
+
+        const response = await fetch(
+            `${API_URL}/api/auth/signup`,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    name: name,
+
+                    email: email,
+
+                    password: password,
+
+                    college:
+                        college ||
+                        "Bansal Institute of Engineering and Technology"
+
+                })
+            }
+        );
+
+
+        const data = await response.json();
+
+
+        console.log(
+            "Signup Response:",
+            data
+        );
+
+
+        return data;
+
+
+    } catch (error) {
+
+        console.error(
+            "Signup Error:",
+            error
+        );
+
+
+        return {
+            success: false,
+            message: "Server connection failed."
+        };
+
+    }
+
+}
+
+
+// ================= CREATE COMMUNITY POST =================
+
+async function createPost(
+    title,
+    content,
+    category,
+    author
+) {
+
+    try {
+
+        const response = await fetch(
+            `${API_URL}/api/posts`,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    title: title,
+
+                    content: content,
+
+                    category:
+                        category || "Community",
+
+                    author: author
+
+                })
+            }
+        );
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "Post Response:",
+            data
+        );
+
+
+        return data;
+
+
+    } catch (error) {
+
+        console.error(
+            "Post Error:",
+            error
+        );
+
+
+        return {
+            success: false,
+            message: "Unable to connect to server."
+        };
+
+    }
+
+}
+
+
+// ================= GET COMMUNITY POSTS =================
+
+async function getPosts() {
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_URL}/api/posts`
+            );
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "Community Posts:",
+            data
+        );
+
+
+        return data.posts || [];
+
+
+    } catch (error) {
+
+        console.error(
+            "Get Posts Error:",
+            error
+        );
+
+
+        return [];
+
+    }
+
+}
+
+
+// ================= CLOSE MODAL =================
 
 window.onclick = function(event) {
 
     const modal =
         document.getElementById("loginModal");
+
 
     if (event.target === modal) {
 
