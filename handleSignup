@@ -125,7 +125,12 @@ async function signup(
     email,
     password,
     college
-) {
+)const result = await signup(
+    name,
+    email,
+    password,
+    college
+); {
 
     try {
 
