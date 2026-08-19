@@ -134,24 +134,18 @@ async function signup(
 
     try {
 
-        const response = await fetch(
-            `${API_URL}/api/auth/signup`,
-            {
-                method: "POST",
+       const result = await Promise.race([
+    signup(name, email, password, college),
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-
-                    name: name,
-
-                    email: email,
-
-                    password: password,
-
-                    college:
+    new Promise(resolve =>
+        setTimeout(() => {
+            resolve({
+                success: false,
+                message: "Server wake ho raha hai. Please 20-30 seconds baad dobara try karein."
+            });
+        }, 15000)
+    )
+]); 
                         college ||
                         "Bansal Institute of Engineering and Technology"
 
